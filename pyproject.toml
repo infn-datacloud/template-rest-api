@@ -1,0 +1,52 @@
+[tool.poetry]
+name = "app"
+version = "0.1.0"
+description = "INFN-DataCloud app python library and backend REST API"
+authors = ["Giovanni Savarese <giovanni.savarese@ba.infn.it>"]
+license = "Apache License 2.0"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.12,<4.0.0"
+pydantic-settings = "^2.9.1"
+pydantic = {extras = ["email"], version = "^2.11.4"}
+sqlmodel = "^0.0.24"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = ">=3.5.0"
+pytest = "^8.3.5"
+pytest-cases = "^3.8.6"
+pytest-mock = "^3.14.0"
+pytest-cov = "^6.1.1"
+ruff = "^0.11.10"
+fastapi-cli = "^0.0.7"
+pytest-asyncio = "^0.26.0"
+
+[tool.poetry.group.rest-api.dependencies]
+fastapi = {extras = ["standard"], version = "^0.115.13"}
+sqlalchemy = "^2.0.41"
+flaat = "^1.2.0"
+opentelemetry-distro = "^0.55b1"
+
+[tool.poetry.group.mysql]
+optional = true
+
+[tool.poetry.group.mysql.dependencies]
+pymysql = "^1.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff.lint]
+# Add rules on PyFlakes(F), pycodestyle (E,W), isort (I), 
+# mccabe (C90) pep8-naming (N), pydocstyle (D), pyupgrade (UP), 
+# ruff specific rules (RUF),
+# flake8-bugbear (B), flake8-logging-format (G), flake8-quotes (Q)
+extend-select = ["B", "C90", "E", "D", "F", "G", "I", "N", "Q", "RUF", "UP", "W"]
+
+[tool.coverage.run]
+relative_files = true
+source = ["app/"]
+branch = true
+omit = ["tests/**"]

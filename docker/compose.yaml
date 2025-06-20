@@ -1,0 +1,30 @@
+services:
+  app:
+    image: harbor.cloud.infn.it/datacloud-middleware/app
+    container_name: app
+    restart: unless-stopped
+    depends_on:
+      - opa
+    ports:
+      - 8000:80
+    environment:
+      AUTHN_MODE: local
+      AUTHZ_MODE: opa 
+    networks:
+      - app-net
+
+
+  opa:
+    image: openpolicyagent/opa
+    container_name: opa
+    ports:
+      - 8181:8181
+    volumes:
+      - ../opa/data:/app:ro
+    command: run --server --log-level debug --addr 0.0.0.0:8181 /app
+
+networks:
+  app-net:
+
+volumes:
+  db-data:
