@@ -13,7 +13,6 @@ services:
     networks:
       - app-net
 
-
   opa:
     image: openpolicyagent/opa
     container_name: opa

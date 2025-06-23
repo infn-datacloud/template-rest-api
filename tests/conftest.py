@@ -1,4 +1,4 @@
-"""Fixtures for app-python tests."""
+"""Fixtures for fed-mgr tests."""
 
 from unittest import mock
 
